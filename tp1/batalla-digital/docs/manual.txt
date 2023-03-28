@@ -1,0 +1,8 @@
+Batalla Digital
+
+Manual de usuario
+? : para mostrar la lista de comandos disponible
+help, -h: para mostrar la lista de comandos disponible
+quit, -q: salir del juego sin guardar.
+save, -s: guardar el juego en curso.
+number number number: colocar un soldado en la posicion indicada en el campo de batalla
