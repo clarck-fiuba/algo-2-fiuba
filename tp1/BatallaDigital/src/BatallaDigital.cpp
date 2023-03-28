@@ -7,11 +7,14 @@
 //============================================================================
 
 #include <iostream>
-#include "ui/ui.h"
+#include "views/views.h"
+#include "core/controller.h"
 
 using namespace std;
 
 int main() {
-	cout << "!!!Hello Clarcked!!!" << endl; // prints !!!Hello Clarck!!!
+	displayBanner();
+	displayUsage();
+	run();
 	return 0;
 }
