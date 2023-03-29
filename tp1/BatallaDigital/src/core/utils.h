@@ -9,8 +9,7 @@
 #define CORE_UTILS_H_
 #include <iostream>
 
-void printStrArray(std::string args[]);
+void printStrArray(std::string args[], int size);
 
-void fillStrArray(std::string args[]);
 
 #endif /* CORE_UTILS_H_ */

@@ -8,8 +8,7 @@
 #include "utils.h"
 
 
-void printStrArray(std::string args[]){
-	int size = sizeof(args) / sizeof(std::string);
+void printStrArray(std::string args[], int size){
 	std::cout << size<< "\n\n" << "[";
 	for (int i=0; i< size; ++i){
 		std::cout << args[i] << ",";
@@ -17,7 +16,3 @@ void printStrArray(std::string args[]){
 	std::cout << "]"<<std::endl;
 }
 
-void fillStrArray(std::string args[]){
-	int size = sizeof(args) / sizeof(std::string);
-
-}

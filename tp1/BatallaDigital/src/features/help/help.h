@@ -7,9 +7,11 @@
 
 #ifndef FEATURES_HELP_HELP_H_
 #define FEATURES_HELP_HELP_H_
+#include <iostream>
+#include "../../views/views.h"
 
+void executeHelp(std::string * args);
 
-
-
+void executeVersion(std::string * args);
 
 #endif /* FEATURES_HELP_HELP_H_ */

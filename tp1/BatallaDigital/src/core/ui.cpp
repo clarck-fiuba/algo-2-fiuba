@@ -7,11 +7,16 @@
 #include "ui.h"
 
 
-std::string* getUserInput(const char * prompt){
-	std::string* args = new std::string[MAX_ARGS];
-	std::cout << prompt << std::endl << "> ";
-	for(int i = 0; i < MAX_ARGS; ++i){
-		std::cin >> args[i];
+std::string * getUserInput(){
+	std::string * args = new std::string[MAX_ARGS];
+	std::cin >> args[0];
+
+	if (args[0] == "p" || args[0] == "play"){
+		std::cout << args[0] << std::endl;
+		std::cin >> args[1];
+		std::cin >> args[2];
+		std::cin >> args[3];
 	}
+
 	return args;
 }
