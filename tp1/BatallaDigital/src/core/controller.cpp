@@ -9,11 +9,10 @@
 
 void run(){
 	bool quitGame = false;
-	std::string input = "";
 	std::string args[MAX_ARGS] = {};
 	do{
-		input = getUserInput("Enter a command:");
-		if (input == "q" || input == "quit"){
+		args = getUserInput("Enter a command:");
+		if (args[0] == "q" || args[0] == "quit"){
 			quitGame = true;
 			std::cout<<"Quitting game...!\n";
 		}else{
@@ -22,8 +21,8 @@ void run(){
 	}while(!quitGame);
 }
 
-void execute(std::string args[]){
+void execute(std::string * args){
 	std::cout<<"running game...!\n";
-	printStrArray(args);
+//	printStrArray(args);
 }
 

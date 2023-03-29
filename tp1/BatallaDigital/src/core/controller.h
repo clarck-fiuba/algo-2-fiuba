@@ -12,7 +12,6 @@
 #include "utils.h"
 #include <iostream>
 
-#define MAX_ARGS 4
 
 void run();
 void execute(std::string args[]);

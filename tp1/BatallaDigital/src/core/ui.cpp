@@ -4,14 +4,14 @@
  *  Created on: Mar 28, 2023
  *      Author: clarck
  */
+#include "ui.h"
 
-#include <string>
-#include <iostream>
 
-std::string getUserInput(const char * prompt){
-	std::string input="";
+std::string* getUserInput(const char * prompt){
+	std::string* args = new std::string[MAX_ARGS];
 	std::cout << prompt << std::endl << "> ";
-	std::cin >> input;
-	std::cout << std::endl;
-	return input;
+	for(int i = 0; i < MAX_ARGS; ++i){
+		std::cin >> args[i];
+	}
+	return args;
 }

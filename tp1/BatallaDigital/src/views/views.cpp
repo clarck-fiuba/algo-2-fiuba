@@ -25,6 +25,6 @@ void displayBanner(){
 }
 
 void displayUsage(){
-	std::cout << "usage:\t[-v | --version] [-h | --help] [-p | --play] [-s | --save] [-i | --import] [-q | --quit]\n"
+	std::cout << "usage:\t[-v | --version] [-h | --help] [-p | --play]\n\t [-s | --save] [-i | --import] [-q | --quit]\n"
 				 "\t<command> [<args>]\n\n";
 }

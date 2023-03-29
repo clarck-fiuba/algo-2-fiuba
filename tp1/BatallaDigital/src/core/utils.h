@@ -11,4 +11,6 @@
 
 void printStrArray(std::string args[]);
 
+void fillStrArray(std::string args[]);
+
 #endif /* CORE_UTILS_H_ */
