@@ -14,7 +14,7 @@ bool isPositionLock(){
 }
 
 bool hasEnemy(int x, int y, Game game){
-	return game.board[x][y] != " " && game.board[x][y] != "x";
+	return game.board[x][y] != " ";
 }
 
 bool hasBomb(int x, int y, Game game){
@@ -22,16 +22,18 @@ bool hasBomb(int x, int y, Game game){
 }
 
 void initBoard(Game *game){
-	game->board =  new string*[DIMENSION];
-	for(int x=0;x<DIMENSION;++x){
+	game->board = new string*[DIMENSION];
+	for(int x=0;x < DIMENSION;++x){
 		game->board[x]=new string[DIMENSION];
 	}
 }
 
 void initGame(Game *game){
 	initBoard(game);
-	for(int x=0;x<DIMENSION;++x){
-		for(int y=0;y<DIMENSION;++y){
+	game->player = "1";
+
+	for(int x=0;x < DIMENSION;++x){
+		for(int y=0;y < DIMENSION;++y){
 			game->board[x][y]=" ";
 		}
 	}
@@ -45,13 +47,20 @@ void initGame(Game *game){
 }
 
 
-void moveSoldier(int srcX, int srcY, int destX, int destY, string player, Game *game){
-	if (!hasEnemy(srcX, srcY, *game)){
-		if (!hasBomb(srcX, srcY, *game)){
+void moveSoldier(int srcX, int srcY, int destX, int destY, Game *game){
+	if (!hasEnemy(destX, destY, *game)){
+		if (!hasBomb(destX, destY, *game)){
 			setBomb(srcX, srcY, game);
-			game->board[destX][destY] = player;
+			game->board[destX][destY] = game->player;
+			switchPlayer(game);
 		}
 	}
+}
+
+void switchPlayer(Game *game){
+	string currentPlayer = game->player;
+	game->player = (currentPlayer == "1") ? "2": "1";
+	cout << "Switched Player" << currentPlayer << " to Player"<< game->player;
 }
 
 void killSoldier(int x, int y, Game *game){

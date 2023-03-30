@@ -10,6 +10,7 @@
 #include <iostream>
 
 void printStrArray(std::string args[], int size);
+void printIntArray(int args[], int size);
 
 
 #endif /* CORE_UTILS_H_ */

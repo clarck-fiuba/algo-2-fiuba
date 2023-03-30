@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include "game.h"
+#include "../../core/ui.h"
+#include "../../core/utils.h"
 #include "../../views/views.h"
 
 using namespace std;

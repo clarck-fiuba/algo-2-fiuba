@@ -7,8 +7,8 @@
 #include "ui.h"
 
 
-std::string * getUserInput(){
-	std::string * args = new std::string[MAX_ARGS];
+std::string * getUserStrInput(int maxArgs){
+	std::string * args = new std::string[maxArgs];
 	std::cin >> args[0];
 
 //	if (args[0] == "p" || args[0] == "play"){
@@ -17,6 +17,15 @@ std::string * getUserInput(){
 //		std::cin >> args[2];
 //		std::cin >> args[3];
 //	}
+
+	return args;
+}
+
+
+
+int * getUserIntInput(int maxArgs){
+	int * args = new int[maxArgs];
+	std::cin >> args[0];
 
 	return args;
 }

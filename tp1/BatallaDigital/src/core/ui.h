@@ -15,6 +15,7 @@
 
 #define MAX_ARGS 4
 
-std::string* getUserInput();
+std::string* getUserStrInput(int maxArgs);
+int * getUserIntInput(int maxArgs);
 
 #endif /* UI_UI_H_ */

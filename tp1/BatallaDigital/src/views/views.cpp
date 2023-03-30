@@ -25,14 +25,14 @@ void displayBanner(){
 }
 
 void displayUsage(){
-	std::cout << "usage:\n\t"
-				 "v,version:\t Display the software version\n\t"
-				 "h,help   :\t Show list of commands\n\t"
-				 "p,play   :\t Move a soldier\n\t"
-				 "b,board  :\t Display board and score\n\t"
-				 "s,save   :\t Save the current game in a file\n\t"
-				 "i,import :\t Import a game from a file\n\t"
-				 "q,quit   :\t Quit game\n\n\t"
+	std::cout << "usage:\n"
+				 "v,version:\t Display the software version\n"
+				 "h,help   :\t Show list of commands\n"
+				 "p,play   :\t Move a soldier\n"
+				 "b,board  :\t Display board and score\n"
+				 "s,save   :\t Save the current game in a file\n"
+				 "i,import :\t Import a game from a file\n"
+				 "q,quit   :\t Quit game\n\n"
 				 "<command> [<args>]\n\n";
 }
 
