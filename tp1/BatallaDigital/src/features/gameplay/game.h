@@ -10,6 +10,7 @@
 
 #include <iostream>
 #define DIMENSION 20
+#define MAX_SOLDIER 4
 
 using namespace std;
 
@@ -19,17 +20,17 @@ struct Game{
 	int** lockTimer;
 };
 
-bool isPositionLock(Game *game);
+bool isPositionLock(int x, int y, Game *game);
 
-bool hasEnemy(Game *game);
+bool hasEnemy(int x, int y, Game game);
 
-bool hasBomb(Game *game);
+bool hasBomb(int x, int y, Game game);
 
-void moveSoldier(Game *game);
+void moveSoldier(int srcX, int srcY, int destX, int destY, string player, Game *game);
 
-void killSoldier(Game *game);
+void killSoldier(int x, int y, Game *game);
 
-void setBomb(Game *game);
+void setBomb(int x, int y, Game *game);
 
 void initGame(Game *game);
 

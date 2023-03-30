@@ -13,14 +13,15 @@ void executeBoard(std::string *args, Game game){
 }
 
 void executePlay(std::string *args, Game *game){
-	std::cout << "Playing...\n";
+	cout << "Playing\n";
+	moveSoldier(0, 8, 1, 8, "1", game);
+	displayBoard(game->board, DIMENSION);
 }
 
 void executeImport(std::string *args, Game *game){
-
-	std::cout << "Import\n";
+	cout << "Import\n";
 }
 
 void executeSave(std::string *args, Game *game){
-	std::cout << "Save\n";
+	cout << "Save\n";
 }

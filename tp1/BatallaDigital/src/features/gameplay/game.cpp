@@ -10,16 +10,15 @@
 
 
 bool isPositionLock(){
-	Game game;
 	return true;
 }
 
-bool hasEnemy(){
-	return false;
+bool hasEnemy(int x, int y, Game game){
+	return game.board[x][y] != " " && game.board[x][y] != "x";
 }
 
-bool hasBomb(){
-	return false;
+bool hasBomb(int x, int y, Game game){
+	return game.board[x][y] == "x";
 }
 
 void initBoard(Game *game){
@@ -36,11 +35,29 @@ void initGame(Game *game){
 			game->board[x][y]=" ";
 		}
 	}
+	int offset = (DIMENSION - MAX_SOLDIER) / 2;
+	for(int i = 0; i < MAX_SOLDIER; ++i){
+		int pos = i + offset;
+		game->board[0][pos] = "1";
+		game->board[19][pos] = "2";
+	}
+
 }
 
 
-void moveSoldier(){ }
+void moveSoldier(int srcX, int srcY, int destX, int destY, string player, Game *game){
+	if (!hasEnemy(srcX, srcY, *game)){
+		if (!hasBomb(srcX, srcY, *game)){
+			setBomb(srcX, srcY, game);
+			game->board[destX][destY] = player;
+		}
+	}
+}
 
-void killSoldier(){ }
+void killSoldier(int x, int y, Game *game){
+	game->board[x][y] = " ";
+}
 
-void setBomb(){ }
+void setBomb(int x, int y, Game *game){
+	game->board[x][y] = "x";
+}
