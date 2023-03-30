@@ -35,3 +35,12 @@ void displayUsage(){
 				 "q,quit   :\t Quit game\n\n\t"
 				 "<command> [<args>]\n\n";
 }
+
+void displayBoard(string **board, int dimension){
+	for(int x=0;x<dimension;++x){
+		for(int y=0;y<dimension;++y){
+			cout << "|" << board[x][y];
+		}
+		cout << endl;
+	}
+}

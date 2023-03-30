@@ -9,23 +9,28 @@
 #define FEATURES_GAMEPLAY_GAME_H_
 
 #include <iostream>
+#define DIMENSION 20
 
-struct {
-	std::string ** board[][] = {{""}};
-	int ** lockTimer[][] = {{0}};
-} Game;
+using namespace std;
 
 
-bool isPositionLock();
+struct Game{
+	string **board;
+	int** lockTimer;
+};
 
-bool hasEnemy();
+bool isPositionLock(Game *game);
 
-bool hasBomb();
+bool hasEnemy(Game *game);
 
-void moveSoldier();
+bool hasBomb(Game *game);
 
-void killSoldier();
+void moveSoldier(Game *game);
 
-void setBomb();
+void killSoldier(Game *game);
+
+void setBomb(Game *game);
+
+void initGame(Game *game);
 
 #endif /* FEATURES_GAMEPLAY_GAME_H_ */

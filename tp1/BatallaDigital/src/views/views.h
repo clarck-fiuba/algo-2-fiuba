@@ -8,10 +8,14 @@
 #ifndef VIEWS_VIEWS_H_
 #define VIEWS_VIEWS_H_
 
+using namespace std;
+
 void displayUsage();
 
 void drawLine();
 
 void displayBanner();
+
+void displayBoard(string** board, int dimension);
 
 #endif /* VIEWS_VIEWS_H_ */

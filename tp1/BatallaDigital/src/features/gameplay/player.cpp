@@ -5,6 +5,7 @@
  *      Author: clarck
  */
 
+#include "player.h"
 
 
 

@@ -14,10 +14,15 @@
 int main() {
 	displayBanner();
 	displayUsage();
+
+	Game game;
 	std::string command;
 	bool quitGame = false;
 	std::string * input = new std::string[MAX_ARGS];
 	std::cout << "Enter a command:\n" ;
+
+	initGame(&game);
+
 	do{
 		std::cout << "> ";
 		input = getUserInput();
@@ -30,13 +35,13 @@ int main() {
 		}else if (command == "v" || command == "version"){
 			executeVersion(input);
 		}else if (command == "b" || command == "board"){
-			executeBoard(input);
+			executeBoard(input, game);
 		}else if (command == "p" || command == "play"){
-			executePlay(input);
+			executePlay(input, &game);
 		}else if (command == "s" || command == "save"){
-			executeSave(input);
+			executeSave(input, &game);
 		}else if (command == "i" || command == "import"){
-			executeImport(input);
+			executeImport(input, &game);
 		}
 
 	}while(!quitGame);

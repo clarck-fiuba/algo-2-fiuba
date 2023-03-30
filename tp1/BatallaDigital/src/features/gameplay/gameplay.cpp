@@ -8,19 +8,19 @@
 #include "gameplay.h"
 
 
-void executeBoard(std::string * args){
-	std::cout << "Show Board\n";
+void executeBoard(std::string *args, Game game){
+	displayBoard(game.board, DIMENSION);
 }
 
-void executePlay(std::string * args){
+void executePlay(std::string *args, Game *game){
 	std::cout << "Playing...\n";
 }
 
-void executeImport(std::string * args){
+void executeImport(std::string *args, Game *game){
 
 	std::cout << "Import\n";
 }
 
-void executeSave(std::string * args){
+void executeSave(std::string *args, Game *game){
 	std::cout << "Save\n";
 }
