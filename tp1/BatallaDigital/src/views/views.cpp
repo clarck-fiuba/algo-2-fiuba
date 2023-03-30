@@ -56,9 +56,9 @@ void displayTable(string items[]){
 }
 
 void displayScore(int * score, int maxPlayer){
-	drawLine(20);
+	drawLine(40);
 	for (int i = 0; i < maxPlayer; ++i){
 		cout << "Player"<< i + 1 << ": "<< score[i] << endl;
 	}
-	drawLine(20);
+	drawLine(40);
 }

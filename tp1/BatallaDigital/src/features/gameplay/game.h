@@ -22,6 +22,7 @@ struct Game {
 	string ** board;
 	int ** lockTimer;
 	int * score;
+	int * soldiers;
 	string player;
 	string winner;
 };
@@ -38,7 +39,7 @@ bool hasWinner(Game game);
 
 bool moveSoldier(int src[2], int dest[2], Game *game);
 
-void killSoldier(int pos[2], Game *game);
+void killSoldier(string player, Game *game);
 
 void setBomb(int pos[2], Game *game);
 
@@ -55,5 +56,8 @@ void decreaseLockTimer(Game *game);
 void updateScore(string player, Game *game);
 
 void updateWinner(Game *game);
+
+void clearPosition(int pos[2], Game *game);
+
 
 #endif /* FEATURES_GAMEPLAY_GAME_H_ */

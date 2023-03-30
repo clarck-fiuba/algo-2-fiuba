@@ -28,7 +28,6 @@ void executePlay(std::string *args, Game *game){
 			if(moveSoldier(srcPosition,destPosition, game)){
 				switchPlayer(game);
 				decreaseLockTimer(game);
-				updateScore(game->player, game);
 			}
 			updateWinner(game);
 			if (hasWinner(*game)){
@@ -36,6 +35,7 @@ void executePlay(std::string *args, Game *game){
 				displayBoard(game->board, DIMENSION);
 				cout << "Player" << game->winner << " WIN!!!!\n";
 				cout << "GAME OVER!\n";
+				initGame(game);
 				gameOver = true;
 			}
 		}

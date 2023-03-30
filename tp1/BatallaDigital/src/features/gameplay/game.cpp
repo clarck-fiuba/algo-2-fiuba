@@ -50,6 +50,9 @@ void initGame(Game *game){
 
 	game->player = "1";
 	game->score = new int[MAX_PLAYER];
+	game->soldiers = new int[MAX_PLAYER];
+	game->soldiers[0] = MAX_SOLDIER;
+	game->soldiers[1] = MAX_SOLDIER;
 
 	for(int x=0;x < DIMENSION;++x){
 		for(int y=0;y < DIMENSION;++y){
@@ -70,13 +73,22 @@ void initGame(Game *game){
 bool moveSoldier(int src[2], int dest[2], Game *game){
 	if(hasEnemy(dest, *game)){
 		cout << "Enemy detected, both soldier will died!!!\n";
-		killSoldier(src, game);
-		killSoldier(dest, game);
+		clearPosition(src, game);
+		clearPosition(dest, game);
+		updateScore(game->player, game);
+
+		killSoldier("1", game);
+		killSoldier("2", game);
+
 	}else if(hasBomb(dest, *game)){
-		cout << "!!!Explosion!!!, soldier died!!!";
-		killSoldier(src, game);
-		killSoldier(dest, game);
+		cout << "!!!Explosion!!!, soldier died!!!\n";
+		clearPosition(src, game);
+		clearPosition(dest, game);//clean bomb
+
+		killSoldier(game->player, game);
+
 		updateLockTimer(dest, 5, game);
+		updateScore(game->player, game);
 	}else{
 		setBomb(src, game);
 		game->board[dest[0]][dest[1]] = game->player;
@@ -87,11 +99,18 @@ bool moveSoldier(int src[2], int dest[2], Game *game){
 void switchPlayer(Game *game){
 	string currentPlayer = game->player;
 	game->player = (currentPlayer == "1") ? "2": "1";
-	//cout << "Switched Player" << currentPlayer << " to Player"<< game->player << endl;
 }
 
-void killSoldier(int pos[2], Game *game){
+void clearPosition(int pos[2], Game *game){
 	game->board[pos[0]][pos[1]] = " ";
+}
+
+void killSoldier(Game *game){
+	if (game->player == "1"){
+		game->soldiers[0] -= 1;
+	}else if (game->player == "2"){
+		game->soldiers[1] -=1 ;
+	}
 }
 
 void setBomb(int pos[2], Game *game){
@@ -124,9 +143,9 @@ void decreaseLockTimer(Game *game){
 
 void updateScore(string player, Game *game){
 	if (player == "1") {
-		game->score[0] +=1;
-	}else if (player=="2"){
 		game->score[1] +=1;
+	}else if (player=="2"){
+		game->score[0] +=1;
 	}
 }
 
