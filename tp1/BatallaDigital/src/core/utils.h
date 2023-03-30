@@ -9,8 +9,10 @@
 #define CORE_UTILS_H_
 #include <iostream>
 
+using namespace std;
+
 void printStrArray(std::string args[], int size);
 void printIntArray(int args[], int size);
-
+bool isValidPosition(int pos[2], int dimension);
 
 #endif /* CORE_UTILS_H_ */

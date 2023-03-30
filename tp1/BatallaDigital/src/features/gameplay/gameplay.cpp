@@ -7,55 +7,39 @@
 
 #include "gameplay.h"
 
-void onQuitGameSession(Game game){
-	cout << "Player " << game.player << " abandoned\n";
-	if (game.winner == ""){
-		cout << "No winner!!!\n";
-	}else{
-		cout << "Player " << game.winner << " win!!!\n";
-	}
-}
 
 void executeBoard(std::string *args, Game game){
 	displayBoard(game.board, DIMENSION);
 }
 
 void executePlay(std::string *args, Game *game){
-	bool keep = true;
+	bool gameOver = false;
 	int * srcPosition = new int[2];
 	int * destPosition = new int[2];
-	int step = 0;
+
 	do{
+		displayScore(game->score, MAX_PLAYER);
 		displayBoard(game->board, DIMENSION);
-
-		cout <<"Player "<< game->player << "\nSelect your soldier (-1 to quit): \n> ";
-		cin >> srcPosition[0];
-
-		if (srcPosition[0] < 0) {
-			onQuitGameSession(*game);
-			break;
+		srcPosition = getBoardPosition("Player"+game->player+" : Select your soldier (ctrl+c to quit): \n> ", DIMENSION);
+		if (!hasSoldier(srcPosition, *game)){
+			cout << "No soldier found at this position for Player"<< game->player;
+		}else{
+			destPosition = getBoardPosition("\nSelect new position (ctrl+c to quit): \n> ", DIMENSION);
+			if(moveSoldier(srcPosition,destPosition, game)){
+				switchPlayer(game);
+				decreaseLockTimer(game);
+				updateScore(game->player, game);
+			}
+			updateWinner(game);
+			if (hasWinner(*game)){
+				displayScore(game->score, MAX_PLAYER);
+				displayBoard(game->board, DIMENSION);
+				cout << "Player" << game->winner << " WIN!!!!\n";
+				cout << "GAME OVER!\n";
+				gameOver = true;
+			}
 		}
-
-		cin >> srcPosition[1];
-		cout << "\nSelect new position (-1 to quit): \n> ";
-		cin >> destPosition[0];
-
-		if (destPosition[0] < 0) {
-			onQuitGameSession(*game);
-			break;
-		}
-
-		cin >> destPosition[1];
-
-		moveSoldier(srcPosition[0], srcPosition[1], destPosition[0], destPosition[0], game);
-//		displayBoard(game->board, DIMENSION);
-
-		cout << "switching player\n";
-		switchPlayer(game);
-
-		++step;
-		keep = step <= 2;
-	}while(keep);
+	}while(!gameOver);
 }
 
 void executeImport(std::string *args, Game *game){

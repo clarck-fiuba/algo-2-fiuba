@@ -18,4 +18,12 @@ void displayBanner();
 
 void displayBoard(string** board, int dimension);
 
+void displayTable(string items[]);
+
+void displayScore(int * score, int maxPlayer);
+
+void displayCoordinates(int coords[2]);
+
+void displayBoardHeader(string** board, int * score, int maxPlayer, int dimension);
+
 #endif /* VIEWS_VIEWS_H_ */

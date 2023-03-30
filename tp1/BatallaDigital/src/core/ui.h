@@ -13,9 +13,9 @@
 #include "utils.h"
 
 
-#define MAX_ARGS 4
 
 std::string* getUserStrInput(int maxArgs);
 int * getUserIntInput(int maxArgs);
+int * getBoardPosition(string prompt, int dimension);
 
 #endif /* UI_UI_H_ */

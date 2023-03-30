@@ -42,7 +42,23 @@ void displayBoard(string **board, int dimension){
 		for(int y=0;y < dimension;++y){
 			cout << "|" << board[x][y] << "";
 		}
-		cout << endl;
+		cout << "|"<< endl;
 	}
 	cout << endl;
+}
+
+void displayCoordinates(int coords[2]){
+	cout << "("<< coords[0]<<","<< coords[1]<<")\n";
+}
+
+void displayTable(string items[]){
+
+}
+
+void displayScore(int * score, int maxPlayer){
+	drawLine(20);
+	for (int i = 0; i < maxPlayer; ++i){
+		cout << "Player"<< i + 1 << ": "<< score[i] << endl;
+	}
+	drawLine(20);
 }
