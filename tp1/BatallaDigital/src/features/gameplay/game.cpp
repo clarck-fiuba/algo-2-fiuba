@@ -59,22 +59,18 @@ void initSoldier(int soldiers[]){
 }
 
 void initGame(Game *game){
-
 	initScore(game->score);
 	initLockTimer(game->lockTimer);
 	initBoard(game->board);
 	initSoldier(game->soldiers);
-
 	game->player = "1";
 	game->winner = "";
-
 	int offset = (DIMENSION - MAX_SOLDIER) / 2;
 	for(int i = 0; i < MAX_SOLDIER; ++i){
 		int pos = i + offset;
 		game->board[0][pos] = "1";
 		game->board[DIMENSION-1][pos] = "2";
 	}
-
 }
 
 
@@ -84,17 +80,13 @@ bool moveSoldier(int src[2], int dest[2], Game *game){
 		clearPosition(src, game);
 		clearPosition(dest, game);
 		updateScore(game->player, game);
-
 		killSoldier("1", game);
 		killSoldier("2", game);
-
 	}else if(hasBomb(dest, *game)){
 		cout << "!!!Explosion!!!, soldier died!!!\n";
 		clearPosition(src, game);
 		clearPosition(dest, game);//clean bomb
-
 		killSoldier(game->player, game);
-
 		updateLockTimer(dest, 5, game);
 		updateScore(game->player, game);
 	}else{
@@ -152,16 +144,51 @@ void decreaseLockTimer(Game *game){
 void updateScore(string player, Game *game){
 	if (player == "1") {
 		game->score[1] +=1;
-	}else if (player=="2"){
+	}else if (player == "2"){
 		game->score[0] +=1;
 	}
 }
 
 
 void updateWinner(Game *game){
-	if (game->score[0]>3) {
-		game->winner = "1";
-	}else if (game->score[1]>3){
-		game->winner = "2";
+	if (game->soldiers[0] <= 0 || game->soldiers[1] <= 0){
+		if (game->score[0] > game->score[1]) {
+			game->winner = "1";
+		}else if (game->score[0] < game->score[1]){
+			game->winner = "2";
+		}else{
+			game->winner = "";
+		}
+	}
+}
+
+void saveBoardToFile(string suffix, string content){
+	string filename = "batalla-digital-"+suffix+".txt";
+	ofstream file(filename);
+	file << content;
+	file.close();
+}
+
+string getBoardContent(string player, Game game){
+	string content = "";
+	for(int x=0;x < DIMENSION;++x){
+		for(int y=0;y < DIMENSION;++y){
+			string cell = "| ";
+			if (game.board[x][y] == player ||
+				game.board[x][y] == "x"){
+				cell = "|"+game.board[x][y];
+			}
+			content.append(cell);
+		}
+		content.append("|\n");
+	}
+	content.append("\n");
+	return content;
+}
+
+void exportGame(Game game){
+	for(int i=1;i <= MAX_PLAYER; ++i){
+		string name = "player" + to_string(i);
+		saveBoardToFile(name, getBoardContent(to_string(i), game));
 	}
 }

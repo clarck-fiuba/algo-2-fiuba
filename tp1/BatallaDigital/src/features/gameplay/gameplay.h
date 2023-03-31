@@ -21,9 +21,5 @@ void executeBoard(string * args, Game game);
 
 void executePlay(string * args, Game *game);
 
-void executeImport(string * args, Game *game);
-
-void executeSave(string * args, Game *game);
-
 
 #endif /* FEATURES_GAMEPLAY_GAMEPLAY_H_ */

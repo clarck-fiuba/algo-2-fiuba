@@ -39,12 +39,11 @@ int main() {
 			executeBoard(input, game);
 		}else if (command == "p" || command == "play"){
 			executePlay(input, &game);
-		}else if (command == "s" || command == "save"){
-			executeSave(input, &game);
-		}else if (command == "i" || command == "import"){
-			executeImport(input, &game);
+		}else{
+			cout << "Command not found\n";
 		}
 
 	}while(!quitGame);
+
 	return 0;
 }

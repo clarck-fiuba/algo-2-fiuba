@@ -22,14 +22,17 @@ void executePlay(std::string *args, Game *game){
 		displayBoard(game->board, DIMENSION);
 		getBoardPosition("Player"+game->player+" : Select your soldier (ctrl+c to quit): \n> ", srcPosition, DIMENSION);
 		if (!hasSoldier(srcPosition, *game)){
-			cout << "No soldier found at this position for Player"<< game->player;
+			cout << "No soldier found at this position for Player"<< game->player << endl;
 		}else{
 			getBoardPosition("\nSelect new position (ctrl+c to quit): \n> ", destPosition, DIMENSION);
 			if(moveSoldier(srcPosition,destPosition, game)){
 				switchPlayer(game);
 				decreaseLockTimer(game);
 			}
+
 			updateWinner(game);
+			exportGame(*game);
+
 			if (hasWinner(*game)){
 				displayScore(game->score, MAX_PLAYER);
 				displayBoard(game->board, DIMENSION);
@@ -40,12 +43,4 @@ void executePlay(std::string *args, Game *game){
 			}
 		}
 	}while(!gameOver);
-}
-
-void executeImport(std::string *args, Game *game){
-	cout << "Import\n";
-}
-
-void executeSave(std::string *args, Game *game){
-	cout << "Save\n";
 }

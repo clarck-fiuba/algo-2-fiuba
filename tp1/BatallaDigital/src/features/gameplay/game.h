@@ -9,6 +9,7 @@
 #define FEATURES_GAMEPLAY_GAME_H_
 
 #include <iostream>
+#include <fstream>
 
 
 #define DIMENSION 20
@@ -58,6 +59,8 @@ void updateScore(string player, Game *game);
 void updateWinner(Game *game);
 
 void clearPosition(int pos[2], Game *game);
+
+void exportGame(Game game);
 
 
 #endif /* FEATURES_GAMEPLAY_GAME_H_ */
