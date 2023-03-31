@@ -12,18 +12,13 @@
 #include "features/gameplay/gameplay.h"
 
 int main() {
-	displayBanner();
-	displayUsage();
-
 	Game game;
 	std::string command;
 	bool quitGame = false;
 	std::string input[1];
-
-	std::cout << "Enter a command:\n" ;
-
 	initGame(&game);
-
+	displayBanner();
+	std::cout << "Enter a command:\n" ;
 	do{
 		std::cout << "> ";
 		getUserStrInput(input);
@@ -42,7 +37,6 @@ int main() {
 		}else{
 			cout << "Comando no encontrado\n";
 		}
-
 	}while(!quitGame);
 
 	return 0;

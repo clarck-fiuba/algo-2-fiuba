@@ -18,20 +18,10 @@ void drawLine(int size){
 }
 
 void displayBanner(){
-	drawLine(50);
+	drawLine(41);
 	std::cout<<"Batalla Digital"<<std::endl;
-	drawLine(50);
+	drawLine(41);
 	std::cout<<std::endl;
-}
-
-void displayUsage(){
-	std::cout << "uso:\n"
-					"v,version:\t Muestra la versión del software\n"
-					"h,ayuda:\t Mostrar lista de comandos\n"
-					"p,play :\t Inicia el juego\n"
-					"b,tablero:\t Mostrar tablero y puntuación\n"
-					"q,salir:\t Salir del juego\n\n"
-					"<comando> [<argumentos>]\n\n";
 }
 
 void displayBoard(string board[][20], int dimension){
@@ -51,9 +41,9 @@ void displayCoordinates(int coords[2]){
 
 
 void displayScore(int * score, int maxPlayer){
-	drawLine(40);
+	drawLine(41);
 	for (int i = 0; i < maxPlayer; ++i){
 		cout << "Player"<< i + 1 << ": "<< score[i] << endl;
 	}
-	drawLine(40);
+	drawLine(41);
 }

@@ -131,8 +131,9 @@ void setBomb(int pos[2], Game *game){
 		lockPath(pos,game);
 		updateLockTimer(pos, 5, game);
 		killSoldier(player, game);
+	}else{
+		game->board[pos[0]][pos[1]] = flag;
 	}
-	game->board[pos[0]][pos[1]] = flag;
 }
 
 void onQuitGameSession(Game game){

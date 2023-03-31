@@ -9,6 +9,7 @@
 
 
 void executeBoard(std::string *args, Game game){
+	displayScore(game.score, MAX_PLAYER);
 	displayBoard(game.board, DIMENSION);
 }
 
@@ -20,8 +21,10 @@ void executePlay(std::string *args, Game *game){
 	do{
 		displayScore(game->score, MAX_PLAYER);
 		displayBoard(game->board, DIMENSION);
-		getBoardPosition("Jugador"+game->player+" :Coloque su bomba (ctrl+c para salir): \n> ", bombPosition, DIMENSION);
+		getBoardPosition("Jugador"+game->player+": Coloque su bomba (ctrl+c para salir): \n> ", bombPosition, DIMENSION);
 		setBomb(bombPosition, game);
+		displayScore(game->score, MAX_PLAYER);
+		displayBoard(game->board, DIMENSION);
 		bombReady = true;
 
 		updateWinner(game);
@@ -37,11 +40,11 @@ void executePlay(std::string *args, Game *game){
 		// solo 2 repeticiones, no voy a crear una funcion
 
 		while(bombReady && !gameOver){
-			getBoardPosition("Seleccione su soldado (ctrl+c para salir): \n> ", srcPosition, DIMENSION);
+			getBoardPosition("Jugador"+game->player+": Seleccione su soldado (ctrl+c para salir): \n> ", srcPosition, DIMENSION);
 			if (!hasMate(srcPosition, *game)){
 				cout << "\nNo se encontró ningún soldado en esta posición para el Jugador"<< game->player << endl;
 			}else{
-				getBoardPosition("\nSeleccionar nueva posición (ctrl+c para salir): \n> ", destPosition, DIMENSION);
+				getBoardPosition("Jugador"+game->player+": Seleccionar nueva posición (ctrl+c para salir): \n> ", destPosition, DIMENSION);
 				if(moveSoldier(srcPosition,destPosition, game)){
 					switchPlayer(game);
 					decreaseLockTimer(game);

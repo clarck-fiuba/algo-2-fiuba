@@ -10,6 +10,8 @@
 #include <iostream>
 #include "../../views/views.h"
 
+using namespace std;
+
 void executeHelp(std::string * args);
 
 void executeVersion(std::string * args);
