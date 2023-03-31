@@ -36,6 +36,8 @@ bool hasBomb(int pos[2], Game game);
 
 bool hasSoldier(int pos[2], Game game);
 
+bool hasMate(int pos[2], Game game);
+
 bool hasWinner(Game game);
 
 bool moveSoldier(int src[2], int dest[2], Game *game);
@@ -61,6 +63,8 @@ void updateWinner(Game *game);
 void clearPosition(int pos[2], Game *game);
 
 void exportGame(Game game);
+
+void lockPath(int pos[2], Game *game);
 
 
 #endif /* FEATURES_GAMEPLAY_GAME_H_ */

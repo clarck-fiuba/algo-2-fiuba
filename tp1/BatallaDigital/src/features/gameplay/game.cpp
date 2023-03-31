@@ -14,16 +14,22 @@ bool isPosLock(int pos[2], Game game){
 }
 
 bool hasSoldier(int pos[2], Game game){
+	return game.board[pos[0]][pos[1]] == "1" || game.board[pos[0]][pos[1]] == "2";
+}
+
+bool hasMate(int pos[2], Game game){
 	return game.board[pos[0]][pos[1]] == game.player;
 }
 
 bool hasEnemy(int pos[2], Game game){
 	string occupant = game.board[pos[0]][pos[1]];
-	return occupant != game.player && occupant != " " && occupant != "x";
+	string enemy = (game.player == "1") ? "2": "1";
+	return occupant == enemy;
 }
 
 bool hasBomb(int pos[2], Game game){
-	return game.board[pos[0]][pos[1]] == "x";
+	string occupant = game.board[pos[0]][pos[1]];
+	return occupant == "*" || occupant == "@";
 }
 
 bool hasWinner(Game game){
@@ -76,24 +82,28 @@ void initGame(Game *game){
 
 bool moveSoldier(int src[2], int dest[2], Game *game){
 	if(hasEnemy(dest, *game)){
-		cout << "Enemy detected, both soldier will died!!!\n";
+		cout << "Enemigo detectado, ¡¡¡ambos soldados morirán!!!\n";
 		clearPosition(src, game);
 		clearPosition(dest, game);
 		updateScore(game->player, game);
 		killSoldier("1", game);
 		killSoldier("2", game);
 	}else if(hasBomb(dest, *game)){
-		cout << "!!!Explosion!!!, soldier died!!!\n";
+		cout << "¡¡¡Explosión!!!, ¡¡¡soldado muerto!!!\n";
 		clearPosition(src, game);
-		clearPosition(dest, game);//clean bomb
-		killSoldier(game->player, game);
+		lockPath(dest,game);
 		updateLockTimer(dest, 5, game);
+		killSoldier(game->player, game);
 		updateScore(game->player, game);
 	}else{
-		setBomb(src, game);
+		clearPosition(src, game);
 		game->board[dest[0]][dest[1]] = game->player;
 	}
 	return true;
+}
+
+void lockPath(int pos[2], Game *game){
+	game->board[pos[0]][pos[1]] = "x";
 }
 
 void switchPlayer(Game *game){
@@ -114,7 +124,15 @@ void killSoldier(string player, Game *game){
 }
 
 void setBomb(int pos[2], Game *game){
-	game->board[pos[0]][pos[1]] = "x";
+	string flag =  (game->player == "1") ? "*": "@";
+	if (hasSoldier(pos, *game)){
+		cout << "¡¡¡Explosión!!!, ¡¡¡soldado muerto!!!\n";
+		string player = game->board[pos[0]][pos[1]];
+		lockPath(pos,game);
+		updateLockTimer(pos, 5, game);
+		killSoldier(player, game);
+	}
+	game->board[pos[0]][pos[1]] = flag;
 }
 
 void onQuitGameSession(Game game){

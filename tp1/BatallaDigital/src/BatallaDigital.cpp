@@ -28,19 +28,19 @@ int main() {
 		std::cout << "> ";
 		getUserStrInput(input);
 		command = input[0];
-		if (input[0] == "q" || command == "quit"){
+		if (input[0] == "q" || command == "salir"){
 			quitGame = true;
-			std::cout << "Quitting game!\n";
-		}else if (command == "h" || command == "help"){
+			std::cout << "Saliendo del game!\n";
+		}else if (command == "h" || command == "ayuda"){
 			executeHelp(input);
 		}else if (command == "v" || command == "version"){
 			executeVersion(input);
-		}else if (command == "b" || command == "board"){
+		}else if (command == "b" || command == "tablero"){
 			executeBoard(input, game);
 		}else if (command == "p" || command == "play"){
 			executePlay(input, &game);
 		}else{
-			cout << "Command not found\n";
+			cout << "Comando no encontrado\n";
 		}
 
 	}while(!quitGame);

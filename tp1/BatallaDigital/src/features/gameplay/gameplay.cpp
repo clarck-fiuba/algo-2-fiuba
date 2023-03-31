@@ -13,34 +13,39 @@ void executeBoard(std::string *args, Game game){
 }
 
 void executePlay(std::string *args, Game *game){
-	bool gameOver = false;
+	bool gameOver = false, bombReady = false;
 	int srcPosition[2];
 	int destPosition[2];
-
+	int bombPosition[2];
 	do{
 		displayScore(game->score, MAX_PLAYER);
 		displayBoard(game->board, DIMENSION);
-		getBoardPosition("Player"+game->player+" : Select your soldier (ctrl+c to quit): \n> ", srcPosition, DIMENSION);
-		if (!hasSoldier(srcPosition, *game)){
-			cout << "No soldier found at this position for Player"<< game->player << endl;
-		}else{
-			getBoardPosition("\nSelect new position (ctrl+c to quit): \n> ", destPosition, DIMENSION);
-			if(moveSoldier(srcPosition,destPosition, game)){
-				switchPlayer(game);
-				decreaseLockTimer(game);
+		getBoardPosition("Jugador"+game->player+" :Coloque su bomba (ctrl+c para salir): \n> ", bombPosition, DIMENSION);
+		setBomb(bombPosition, game);
+		bombReady = true;
+		while(bombReady && !gameOver){
+			getBoardPosition("Seleccione su soldado (ctrl+c para salir): \n> ", srcPosition, DIMENSION);
+			if (!hasMate(srcPosition, *game)){
+				cout << "\nNo se encontró ningún soldado en esta posición para el Jugador"<< game->player << endl;
+			}else{
+				getBoardPosition("\nSeleccionar nueva posición (ctrl+c para salir): \n> ", destPosition, DIMENSION);
+				if(moveSoldier(srcPosition,destPosition, game)){
+					switchPlayer(game);
+					decreaseLockTimer(game);
+				}
+				updateWinner(game);
+				exportGame(*game);
+				if (hasWinner(*game)){
+					displayScore(game->score, MAX_PLAYER);
+					displayBoard(game->board, DIMENSION);
+					cout << "Jugador" << game->winner << " ha ganado!!!!\n";
+					cout << "GAME OVER!\n";
+					initGame(game);
+					gameOver = true;
+				}
+				bombReady=false;
 			}
+		};
 
-			updateWinner(game);
-			exportGame(*game);
-
-			if (hasWinner(*game)){
-				displayScore(game->score, MAX_PLAYER);
-				displayBoard(game->board, DIMENSION);
-				cout << "Player" << game->winner << " WIN!!!!\n";
-				cout << "GAME OVER!\n";
-				initGame(game);
-				gameOver = true;
-			}
-		}
 	}while(!gameOver);
 }
