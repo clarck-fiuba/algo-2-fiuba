@@ -23,6 +23,19 @@ void executePlay(std::string *args, Game *game){
 		getBoardPosition("Jugador"+game->player+" :Coloque su bomba (ctrl+c para salir): \n> ", bombPosition, DIMENSION);
 		setBomb(bombPosition, game);
 		bombReady = true;
+
+		updateWinner(game);
+		exportGame(*game);
+		if (hasWinner(*game)){
+			displayScore(game->score, MAX_PLAYER);
+			displayBoard(game->board, DIMENSION);
+			cout << "Jugador" << game->winner << " ha ganado!!!!\n";
+			cout << "GAME OVER!\n";
+			initGame(game);
+			gameOver = true;
+		}
+		// solo 2 repeticiones, no voy a crear una funcion
+
 		while(bombReady && !gameOver){
 			getBoardPosition("Seleccione su soldado (ctrl+c para salir): \n> ", srcPosition, DIMENSION);
 			if (!hasMate(srcPosition, *game)){
@@ -33,6 +46,7 @@ void executePlay(std::string *args, Game *game){
 					switchPlayer(game);
 					decreaseLockTimer(game);
 				}
+
 				updateWinner(game);
 				exportGame(*game);
 				if (hasWinner(*game)){
@@ -43,7 +57,9 @@ void executePlay(std::string *args, Game *game){
 					initGame(game);
 					gameOver = true;
 				}
+
 				bombReady=false;
+
 			}
 		};
 
