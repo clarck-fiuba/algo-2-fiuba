@@ -7,22 +7,15 @@
 #include "ui.h"
 
 
-std::string * getUserStrInput(int maxArgs){
-	std::string * args = new std::string[maxArgs];
-	std::cin >> args[0];
-	return args;
+void getUserStrInput(string args[]){
+	cin >> args[0];
 }
 
-
-
-int * getUserIntInput(int maxArgs){
-	int * args = new int[maxArgs];
+void getUserIntInput(int args[]){
 	std::cin >> args[0];
-	return args;
 }
 
-int * getBoardPosition(string prompt, int dimension){
-	int * position = new int[2];
+void getBoardPosition(string prompt, int position[], int dimension){
 	do{
 		cout << prompt;
 		cin >> position[1] >> position[0];
@@ -37,5 +30,4 @@ int * getBoardPosition(string prompt, int dimension){
 		if(!isValidPosition(position, dimension)) cout << "Invalid Position\n\n";
 	}while(!isValidPosition(position, dimension));
 
-	return position;
 }

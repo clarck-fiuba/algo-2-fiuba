@@ -14,17 +14,17 @@ void executeBoard(std::string *args, Game game){
 
 void executePlay(std::string *args, Game *game){
 	bool gameOver = false;
-	int * srcPosition = new int[2];
-	int * destPosition = new int[2];
+	int srcPosition[2];
+	int destPosition[2];
 
 	do{
 		displayScore(game->score, MAX_PLAYER);
 		displayBoard(game->board, DIMENSION);
-		srcPosition = getBoardPosition("Player"+game->player+" : Select your soldier (ctrl+c to quit): \n> ", DIMENSION);
+		getBoardPosition("Player"+game->player+" : Select your soldier (ctrl+c to quit): \n> ", srcPosition, DIMENSION);
 		if (!hasSoldier(srcPosition, *game)){
 			cout << "No soldier found at this position for Player"<< game->player;
 		}else{
-			destPosition = getBoardPosition("\nSelect new position (ctrl+c to quit): \n> ", DIMENSION);
+			getBoardPosition("\nSelect new position (ctrl+c to quit): \n> ", destPosition, DIMENSION);
 			if(moveSoldier(srcPosition,destPosition, game)){
 				switchPlayer(game);
 				decreaseLockTimer(game);

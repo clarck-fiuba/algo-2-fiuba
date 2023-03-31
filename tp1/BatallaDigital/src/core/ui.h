@@ -14,8 +14,8 @@
 
 
 
-std::string* getUserStrInput(int maxArgs);
-int * getUserIntInput(int maxArgs);
-int * getBoardPosition(string prompt, int dimension);
+void getUserStrInput(string args[]);
+void getUserIntInput(int args[]);
+void getBoardPosition(string prompt, int position[], int dimension);
 
 #endif /* UI_UI_H_ */

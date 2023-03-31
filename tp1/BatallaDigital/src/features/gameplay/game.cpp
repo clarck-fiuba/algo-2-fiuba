@@ -30,35 +30,43 @@ bool hasWinner(Game game){
 	return game.winner != "";
 }
 
-void initBoard(Game *game){
-	game->board = new string*[DIMENSION];
-	for(int x=0;x < DIMENSION;++x){
-		game->board[x]=new string[DIMENSION];
+void initScore(int score[]){
+	for (int i=0;i < MAX_PLAYER; ++i){
+		score[i] = 0;
 	}
 }
 
-void initLockTimer(Game *game){
-	game->lockTimer = new int*[DIMENSION];
-	for(int x=0;x < DIMENSION;++x){
-		game->lockTimer[x]=new int[DIMENSION];
+void initLockTimer(int lock[][DIMENSION]){
+	for (int i=0;i < DIMENSION; ++i){
+		for (int j=0;j < DIMENSION; ++j){
+			lock[i][j] = 0;
+		}
+	}
+}
+
+void initBoard(string board[][DIMENSION]){
+	for (int i=0;i < DIMENSION; ++i){
+		for (int j=0;j < DIMENSION; ++j){
+			board[i][j] = " ";
+		}
+	}
+}
+
+void initSoldier(int soldiers[]){
+	for (int i=0;i < MAX_PLAYER; ++i){
+		soldiers[i] = MAX_SOLDIER;
 	}
 }
 
 void initGame(Game *game){
-	initBoard(game);
-	initLockTimer(game);
+
+	initScore(game->score);
+	initLockTimer(game->lockTimer);
+	initBoard(game->board);
+	initSoldier(game->soldiers);
 
 	game->player = "1";
-	game->score = new int[MAX_PLAYER];
-	game->soldiers = new int[MAX_PLAYER];
-	game->soldiers[0] = MAX_SOLDIER;
-	game->soldiers[1] = MAX_SOLDIER;
-
-	for(int x=0;x < DIMENSION;++x){
-		for(int y=0;y < DIMENSION;++y){
-			game->board[x][y]=" ";
-		}
-	}
+	game->winner = "";
 
 	int offset = (DIMENSION - MAX_SOLDIER) / 2;
 	for(int i = 0; i < MAX_SOLDIER; ++i){
@@ -105,10 +113,10 @@ void clearPosition(int pos[2], Game *game){
 	game->board[pos[0]][pos[1]] = " ";
 }
 
-void killSoldier(Game *game){
-	if (game->player == "1"){
+void killSoldier(string player, Game *game){
+	if (player == "1"){
 		game->soldiers[0] -= 1;
-	}else if (game->player == "2"){
+	}else if (player == "2"){
 		game->soldiers[1] -=1 ;
 	}
 }
@@ -148,7 +156,6 @@ void updateScore(string player, Game *game){
 		game->score[0] +=1;
 	}
 }
-
 
 
 void updateWinner(Game *game){

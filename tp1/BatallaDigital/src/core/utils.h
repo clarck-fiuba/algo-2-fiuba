@@ -13,6 +13,6 @@ using namespace std;
 
 void printStrArray(std::string args[], int size);
 void printIntArray(int args[], int size);
-bool isValidPosition(int pos[2], int dimension);
+bool isValidPosition(int pos[], int dimension);
 
 #endif /* CORE_UTILS_H_ */

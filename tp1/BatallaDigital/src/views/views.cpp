@@ -36,7 +36,7 @@ void displayUsage(){
 				 "<command> [<args>]\n\n";
 }
 
-void displayBoard(string **board, int dimension){
+void displayBoard(string board[][20], int dimension){
 	cout << endl;
 	for(int x=0;x < dimension;++x){
 		for(int y=0;y < dimension;++y){
@@ -51,9 +51,6 @@ void displayCoordinates(int coords[2]){
 	cout << "("<< coords[0]<<","<< coords[1]<<")\n";
 }
 
-void displayTable(string items[]){
-
-}
 
 void displayScore(int * score, int maxPlayer){
 	drawLine(40);

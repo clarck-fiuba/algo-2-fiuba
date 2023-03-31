@@ -19,10 +19,10 @@ using namespace std;
 
 
 struct Game {
-	string ** board;
-	int ** lockTimer;
-	int * score;
-	int * soldiers;
+	string board[DIMENSION][DIMENSION];
+	int lockTimer[DIMENSION][DIMENSION];
+	int score[MAX_PLAYER];
+	int soldiers[MAX_PLAYER];
 	string player;
 	string winner;
 };

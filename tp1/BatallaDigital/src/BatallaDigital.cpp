@@ -18,14 +18,15 @@ int main() {
 	Game game;
 	std::string command;
 	bool quitGame = false;
-	std::string * input = new std::string[1];
+	std::string input[1];
+
 	std::cout << "Enter a command:\n" ;
 
 	initGame(&game);
 
 	do{
 		std::cout << "> ";
-		input = getUserStrInput(1);
+		getUserStrInput(input);
 		command = input[0];
 		if (input[0] == "q" || command == "quit"){
 			quitGame = true;
